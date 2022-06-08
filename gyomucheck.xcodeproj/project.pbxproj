@@ -7,16 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CCCF37532844A8C500E68A41 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = CCCF37522844A8C500E68A41 /* Realm */; };
+		CCCF37552844A8C500E68A41 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CCCF37542844A8C500E68A41 /* RealmSwift */; };
+		CCCF37572846877E00E68A41 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF37562846877E00E68A41 /* MainViewController.swift */; };
+		CCCF37592846F34600E68A41 /* Kiroku.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCF37582846F34500E68A41 /* Kiroku.swift */; };
 		CCEF8905283B61E000CF50FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEF8904283B61E000CF50FA /* AppDelegate.swift */; };
 		CCEF8907283B61E000CF50FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEF8906283B61E000CF50FA /* SceneDelegate.swift */; };
 		CCEF890C283B61E000CF50FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCEF890A283B61E000CF50FA /* Main.storyboard */; };
 		CCEF890E283B61E300CF50FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCEF890D283B61E300CF50FA /* Assets.xcassets */; };
 		CCEF8911283B61E300CF50FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCEF890F283B61E300CF50FA /* LaunchScreen.storyboard */; };
 		CCEF8919283B623800CF50FA /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEF8918283B623800CF50FA /* TimerViewController.swift */; };
-		CCEF891B283E067700CF50FA /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEF891A283E067700CF50FA /* MainTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CCCF37562846877E00E68A41 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CCCF37582846F34500E68A41 /* Kiroku.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kiroku.swift; sourceTree = "<group>"; };
 		CCEF8901283B61E000CF50FA /* gyomucheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gyomucheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCEF8904283B61E000CF50FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCEF8906283B61E000CF50FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -25,7 +30,6 @@
 		CCEF8910283B61E300CF50FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CCEF8912283B61E300CF50FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCEF8918283B623800CF50FA /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
-		CCEF891A283E067700CF50FA /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCCF37552844A8C500E68A41 /* RealmSwift in Frameworks */,
+				CCCF37532844A8C500E68A41 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +67,8 @@
 				CCEF8904283B61E000CF50FA /* AppDelegate.swift */,
 				CCEF8906283B61E000CF50FA /* SceneDelegate.swift */,
 				CCEF8918283B623800CF50FA /* TimerViewController.swift */,
-				CCEF891A283E067700CF50FA /* MainTableViewController.swift */,
+				CCCF37562846877E00E68A41 /* MainViewController.swift */,
+				CCCF37582846F34500E68A41 /* Kiroku.swift */,
 				CCEF890A283B61E000CF50FA /* Main.storyboard */,
 				CCEF890D283B61E300CF50FA /* Assets.xcassets */,
 				CCEF890F283B61E300CF50FA /* LaunchScreen.storyboard */,
@@ -86,6 +93,10 @@
 			dependencies = (
 			);
 			name = gyomucheck;
+			packageProductDependencies = (
+				CCCF37522844A8C500E68A41 /* Realm */,
+				CCCF37542844A8C500E68A41 /* RealmSwift */,
+			);
 			productName = gyomucheck;
 			productReference = CCEF8901283B61E000CF50FA /* gyomucheck.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +125,9 @@
 				Base,
 			);
 			mainGroup = CCEF88F8283B61DF00CF50FA;
+			packageReferences = (
+				CCCF37512844A8C500E68A41 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = CCEF8902283B61E000CF50FA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -143,8 +157,9 @@
 			files = (
 				CCEF8919283B623800CF50FA /* TimerViewController.swift in Sources */,
 				CCEF8905283B61E000CF50FA /* AppDelegate.swift in Sources */,
-				CCEF891B283E067700CF50FA /* MainTableViewController.swift in Sources */,
 				CCEF8907283B61E000CF50FA /* SceneDelegate.swift in Sources */,
+				CCCF37592846F34600E68A41 /* Kiroku.swift in Sources */,
+				CCCF37572846877E00E68A41 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +375,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CCCF37512844A8C500E68A41 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CCCF37522844A8C500E68A41 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCCF37512844A8C500E68A41 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		CCCF37542844A8C500E68A41 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCCF37512844A8C500E68A41 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CCEF88F9283B61DF00CF50FA /* Project object */;
 }
