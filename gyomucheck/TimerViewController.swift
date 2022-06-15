@@ -22,6 +22,7 @@ class TimerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
     
     //スタート・ストップを切り替える
     @IBAction func startButtonAction(_ sender: Any){
@@ -173,7 +174,7 @@ class TimerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             //アラートを表示する
             present(alert, animated: true, completion: nil)
             return
-    }
+        }
     }
     
     // 項目名・時間・日付を保存するメソッド
@@ -183,13 +184,47 @@ class TimerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         kiroku.subject = koumokuText
         guard let timerText = timerLabel.text else { return }
         kiroku.duration = timerText
-        kiroku.recordData = Date()
-        //Realmに保存する
-        try! realm.write(){
-            realm.add(kiroku)
+        
+        //セクションに保存した日付が表示されるようにする
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.dateFormat = "yyyy/M/d"
+        let dateString = dateFormatter.string(from: now)
+        
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "EEEEE", options: 0, locale:  Locale.current)
+        let dayOfTheWeek = dateFormatter.string(from: now)
+        
+        let nowDateString = dateString + " (" + dayOfTheWeek + ")"
+        kiroku.recordDateString = nowDateString
+        
+        let oldKirokuArray = Array(realm.objects(Kiroku.self)).filter { k in
+            k.recordDateString == nowDateString
+        }.filter { k in
+            k.subject == koumokuText
         }
         
+        //Realmに保存する
+        try! realm.write(){
+            realm.add(kiroku)}
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //Labelに日付を表示
+        dateLabel.text = recordData()
+    }
+    
+    //今日の日付を取得
+    func recordData() -> String{
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy年M月d日"
+        formatter.locale = Locale(identifier: "ja_JP")
+        return formatter.string(from: now as Date)
+    }
+    
+    
     
     /*
      // MARK: - Navigation
@@ -200,6 +235,5 @@ class TimerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
      // Pass the selected object to the new view controller.
      }
      */
-    
 }
 

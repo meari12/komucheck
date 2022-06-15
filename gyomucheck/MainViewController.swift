@@ -8,15 +8,14 @@
 import UIKit
 import RealmSwift
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController{
     
     @IBOutlet var tableView: UITableView!
     
     let realm = try! Realm()
     
     var kiroku = [Kiroku]()
-    
-    
+    var kirokuDic = [String : [Kiroku]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +32,7 @@ class MainViewController: UIViewController {
         getTimerData()
     }
     
+    
     // Viewの初期設定を行うメソッド
     func setUpViews() {
         tableView.delegate = self
@@ -41,9 +41,22 @@ class MainViewController: UIViewController {
     }
     
     // Realmからデータを取得してテーブルビューを再リロードするメソッド
-    //保存済みのツイートを取得する
+    //保存済みのデータを取得する
     func getKoumokuData(){
-        kiroku = Array(realm.objects(Kiroku.self)).reversed()  // Realm DBから保存されてるツイートを全取得
+        kiroku = Array(realm.objects(Kiroku.self)).reversed()
+        // Realm DBから保存されてるツイートを全取得
+        
+        kirokuDic = [:]
+        for k in kiroku {
+            if kirokuDic.keys.contains(k.recordDateString) {
+                // ディクショナリーの鍵に日付が含まれてたら、kを追加
+                kirokuDic[k.recordDateString]?.append(k)
+            } else {
+                // ディクショナリーの鍵に日付が含まれてなかったら配列を初期化
+                kirokuDic[k.recordDateString] = [k]
+            }
+            
+        }
         tableView.reloadData() // テーブルビューをリロード
     }
     
@@ -60,38 +73,42 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     // cellの個数を指定する
     // TableViewが何個のCellを表示するのか設定するデリゲートメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let kirokuData = realm.objects(Kiroku.self)
-        return kirokuData.count //記録の数だけセルを作る
+        let array = Array(kirokuDic.keys)
+        let key = array[section]
+        return kirokuDic[key]?.count ?? 0
         
+    }
+    //セクションの数
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return kirokuDic.keys.count
+    }
+    
+    //セクションのタイトル
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let array = Array(kirokuDic.keys)
+        let key = array[section]
+        return key
     }
     
     // Cellの中身を指定する
     // Cellの中身を設定するデリゲートメソッド
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let kirokuData = realm.objects(Kiroku.self)
-        (cell.viewWithTag(1) as? UILabel)!.text = kirokuData[indexPath.row].subject
-        //kirokuData[indexPath.row]=セルの上から何番目か
-        (cell.viewWithTag(2) as? UILabel)!.text = kirokuData[indexPath.row].duration
-        //(cell.viewWithTag(3) as? UILabel)!.text = kirokuData[indexPath.row].recordData
+        let key = Array(kirokuDic.keys)[indexPath.section] // 0
+        let kiroku = kirokuDic[key]?[indexPath.row]
         
+        (cell.viewWithTag(1) as? UILabel)!.text = kiroku?.subject
+        //kirokuData[indexPath.row]=セルの上から何番目か
+        (cell.viewWithTag(2) as? UILabel)!.text = kiroku?.duration
         return cell
     }
     
-    //セルの編集許可
-       func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
-       {
-           return true
-       }
-
-       //スワイプしたセルを削除　
-       func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-           if editingStyle == UITableViewCell.EditingStyle.delete {
-               kiroku.remove(at: indexPath.row)
-               tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
-           }
-       }
     
+    //セルの編集許可
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
     
     
 }
@@ -106,6 +123,7 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
 }
 
 
+
 /*
  // MARK: - Navigation
  
@@ -115,4 +133,3 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
  // Pass the selected object to the new view controller.
  }
  */
-

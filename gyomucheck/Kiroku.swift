@@ -10,7 +10,11 @@ import RealmSwift
 
 class Kiroku: Object {
     @objc dynamic var subject: String = ""
-    @objc dynamic var recordData: Date?
+    @objc dynamic var recordDateString: String = ""
     @objc dynamic var duration: String = ""
     
 }
+
+public var primaryKey: String {
+        return "date"
+   }

@@ -39,7 +39,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo6-5T-3R1">
                                 <rect key="frame" x="14" y="324" width="380" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="84"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="84"/>
                                 <color key="textColor" red="0.0" green="0.6588235294117647" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -57,7 +57,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6LP-d4-Mos">
-                                <rect key="frame" x="294" y="513" width="100" height="100"/>
+                                <rect key="frame" x="293" y="513" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.0" green="0.23529411759999999" blue="0.57980388199999999" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
@@ -66,12 +66,20 @@
                                     <action selector="saveButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="vSC-Jd-aPx"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MS-af-UNh">
+                                <rect key="frame" x="91" y="122" width="233" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="記録を入力" id="Fxm-Fg-y7B"/>
                     <connections>
+                        <outlet property="dateLabel" destination="3MS-af-UNh" id="rgR-Wa-wkt"/>
                         <outlet property="resetButton" destination="AzA-UH-ujC" id="iIR-xT-d87"/>
                         <outlet property="saveButton" destination="6LP-d4-Mos" id="ZAl-zO-7YE"/>
                         <outlet property="startButton" destination="VPo-e4-L6I" id="C7t-NV-UGQ"/>
